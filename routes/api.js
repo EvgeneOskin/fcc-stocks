@@ -17,7 +17,9 @@ module.exports = function (app) {
 
   app.route('/api/stock-prices')
     .get(function (req, res){
-      res.send('')
+      res.json({
+        stockData: { stock: "GOOG", price: "786.90", likes: 1 } 
+      })
     });
     
 };
