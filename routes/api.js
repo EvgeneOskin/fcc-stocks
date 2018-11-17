@@ -27,16 +27,28 @@ module.exports = (app) => {
   app.route('/api/stock-prices')
     .get(async (req, res) => {
       const { stock: stocks, like } = req.query
+      let stocksArray = stocks
+      if (!stocks.length) {
+        stocksArray = [stocks]
+      }
       const { currentPrice: price, symbol: stock } = await getStockData(stocks)
-      res.json({
-        stockData: { stock: stock.toUpperCase(), price: price, likes } 
-      })
+      await updateLikes(stocksArray, req.ip)
+      if (stocksArray.length === 1) {
+        res.json({ stockData: getStockData(stock) })
+      } else {
+        const stockData = await Promise.all(stocksArray.map(getStockData))
+        res.json({ stockData })
+      }
     });
-  const updateLikes = (stock, ip) => {
-    db.collection('stock').findOneAndUpdate({ stock }, {likes: ip})
+  const updateLikes = async (stocks, ip) => {
+    const collection = db.collection('stock')
+    return await Promise.all(stocks.map(i => collection.findOneAndUpdate({ 
+      stock: i, ip 
+    })))
   }
   const getStockData = async (stock) => {
     const { currentPrice: price } = await lookupStock(stock)
-    return { stock: stock.toUpperCase(), price }
+    const likes = 0
+    return { stock: stock.toUpperCase(), price, likes }
   }
 };
