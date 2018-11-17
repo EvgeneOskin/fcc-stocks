@@ -31,12 +31,14 @@ module.exports = (app) => {
       if (!stocks.length) {
         stocksArray = [stocks]
       }
-      const { currentPrice: price, symbol: stock } = await getStockData(stocks)
       await updateLikes(stocksArray, req.ip)
       if (stocksArray.length === 1) {
-        res.json({ stockData: getStockData(stock) })
+        res.json({ stockData: await getStockData(stocksArray[0]) })
       } else {
-        const stockData = await Promise.all(stocksArray.map(getStockData))
+        const [leftStock, rightStock] = stocksArray
+        const leftStockData = await getStockData(rightStock)
+        const rightStockData = await getStockData(rightStock)
+        stockData = await Promise.all(stocksArray.map(getStockData))
         res.json({ stockData })
       }
     });
