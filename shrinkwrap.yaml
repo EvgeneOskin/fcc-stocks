@@ -4,10 +4,10 @@ dependencies:
   chai-http: 3.0.0
   cors: 2.8.5
   express: 4.16.4
-  google-stocks: 2.0.1
   helmet: 3.15.0
   mocha: 3.5.3
   mongodb: 2.2.36
+  yahoo-stocks: 2.0.4
   zombie: 5.0.8
 packages:
   /abab/1.0.4:
@@ -36,15 +36,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-q259nYhqrKiwhbwzEreaGYQz8Oc=
-  /ajv/5.5.2:
-    dependencies:
-      co: 4.6.0
-      fast-deep-equal: 1.1.0
-      fast-json-stable-stringify: 2.0.0
-      json-schema-traverse: 0.3.1
-    dev: false
-    resolution:
-      integrity: sha1-c7Xuyj+rZT49P5Qis0GtQiBdyWU=
   /ajv/6.5.5:
     dependencies:
       fast-deep-equal: 2.0.1
@@ -58,10 +49,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
-  /asap/2.0.6:
-    dev: false
-    resolution:
-      integrity: sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
   /asn1/0.2.4:
     dependencies:
       safer-buffer: 2.1.2
@@ -131,23 +118,6 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-WykhmP/dVTs6DyDe0FkrlWlVyLQ=
-  /boom/4.3.1:
-    dependencies:
-      hoek: 4.2.1
-    deprecated: This version is no longer maintained. Please upgrade to the latest version.
-    dev: false
-    engines:
-      node: '>=4.0.0'
-    resolution:
-      integrity: sha1-T4owBctKfjiJ90kDD9JbluAdLjE=
-  /boom/5.2.0:
-    dependencies:
-      hoek: 4.2.1
-    dev: false
-    engines:
-      node: '>=4.0.0'
-    resolution:
-      integrity: sha512-Z5BTk6ZRe4tXXQlkqftmsAUANpXmuwlsF5Oov8ThoMbQRzdGTA1ngYRW160GexgOgjsFOKJz0LYhoNi+2AMBUw==
   /brace-expansion/1.1.11:
     dependencies:
       balanced-match: 1.0.0
@@ -205,13 +175,6 @@ packages:
       node: '>= 0.4.0'
     resolution:
       integrity: sha1-TQJjewZ/6Vi9v906QOxW/vc3Mkc=
-  /co/4.6.0:
-    dev: false
-    engines:
-      iojs: '>= 1.0.0'
-      node: '>= 0.12.0'
-    resolution:
-      integrity: sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
   /combined-stream/1.0.7:
     dependencies:
       delayed-stream: 1.0.0
@@ -287,12 +250,6 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
-  /cryptiles/3.1.4:
-    dependencies:
-      boom: 5.2.0
-    dev: false
-    resolution:
-      integrity: sha512-8I1sgZHfVwcSOY6mSGpVU3lw/GSIZvusg8dD2+OGehCJpOhQRLNcH0qb9upQnOH4XhgxxFJSg6E2kx95deb1Tw==
   /cssom/0.3.4:
     dev: false
     resolution:
@@ -502,10 +459,6 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
-  /fast-deep-equal/1.1.0:
-    dev: false
-    resolution:
-      integrity: sha1-wFNHeBfIa1HaqFPIHgWbcz0CNhQ=
   /fast-deep-equal/2.0.1:
     dev: false
     resolution:
@@ -601,13 +554,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-gFIR3wT6rxxjo2ADBs31reULLsg=
-  /google-stocks/2.0.1:
-    dependencies:
-      promise: 8.0.1
-      request: 2.83.0
-    dev: false
-    resolution:
-      integrity: sha512-JybYCOUl7O6lodAAYzseE5oBozWhcr2SCbXXCBHSkSI+ccCAuvgSQFc8moBwt/hdEhIULXEQ6cF6siJs7qgxjA==
   /graceful-readlink/1.0.1:
     dev: false
     resolution:
@@ -622,15 +568,6 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-qUwiJOvKwEeCoNkDVSHyRzW37JI=
-  /har-validator/5.0.3:
-    dependencies:
-      ajv: 5.5.2
-      har-schema: 2.0.0
-    dev: false
-    engines:
-      node: '>=4'
-    resolution:
-      integrity: sha1-ukAsJmGU8VlW7xXg/PJCmT9qff0=
   /har-validator/5.1.3:
     dependencies:
       ajv: 6.5.5
@@ -646,17 +583,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-nZ55MWXOAXoA8AQYxD+UKnsdEfo=
-  /hawk/6.0.2:
-    dependencies:
-      boom: 4.3.1
-      cryptiles: 3.1.4
-      hoek: 4.2.1
-      sntp: 2.1.0
-    dev: false
-    engines:
-      node: '>=4.5.0'
-    resolution:
-      integrity: sha512-miowhl2+U7Qle4vdLqDdPt9m09K6yZhkLDTWGoUiUzrQCn+mHHSmfJgAyGaLRZbPmTqfFFjRV1QWCW0VWUJBbQ==
   /he/1.1.1:
     dev: false
     hasBin: true
@@ -702,12 +628,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-SoWtZYgfYoV/xwr3F0oRhNzM4ys=
-  /hoek/4.2.1:
-    dev: false
-    engines:
-      node: '>=4.0.0'
-    resolution:
-      integrity: sha512-QLg82fGkfnJ/4iy1xZ81/9SIJiq1NGFUMGs6ParyjBZr6jW2Ufj/snDqTHixNlHdPNwN2RLVD0Pi3igeK9+JfA==
   /hpkp/2.0.0:
     dev: false
     resolution:
@@ -825,10 +745,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-QLQCdwwr2iNGkJa+6Rq2deOx/G4=
-  /json-schema-traverse/0.3.1:
-    dev: false
-    resolution:
-      integrity: sha1-NJptRMU6Ud6JtAgFxdXlm0F9M0A=
   /json-schema-traverse/0.4.1:
     dev: false
     resolution:
@@ -1035,10 +951,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-3iuY4N5dhgMpCUrOVnuAdGrgxVqV2cJpM+XNccjR2DKOB1RUP0aA+wGXEiNziG/UKboFyGBIoKOaNlJxx8bciQ==
-  /oauth-sign/0.8.2:
-    dev: false
-    resolution:
-      integrity: sha1-Rqarfwrq2N6unsBWV4C31O/rnUM=
   /oauth-sign/0.9.0:
     dev: false
     resolution:
@@ -1130,12 +1042,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-MtEC1TqN0EU5nephaJ4rAtThHtC86dNN9qCuEhtshvpVBkAW5ZO7BASN9REnF9eoXGcRub+pFuKEpOHE+HbEMw==
-  /promise/8.0.1:
-    dependencies:
-      asap: 2.0.6
-    dev: false
-    resolution:
-      integrity: sha1-5F1osAoXZHttpxG/he1u1HII9FA=
   /proxy-addr/2.0.4:
     dependencies:
       forwarded: 0.1.2
@@ -1214,35 +1120,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-NXdOtzW/UPtsB46DM0tHI1AgfXk=
-  /request/2.83.0:
-    dependencies:
-      aws-sign2: 0.7.0
-      aws4: 1.8.0
-      caseless: 0.12.0
-      combined-stream: 1.0.7
-      extend: 3.0.2
-      forever-agent: 0.6.1
-      form-data: 2.3.3
-      har-validator: 5.0.3
-      hawk: 6.0.2
-      http-signature: 1.2.0
-      is-typedarray: 1.0.0
-      isstream: 0.1.2
-      json-stringify-safe: 5.0.1
-      mime-types: 2.1.21
-      oauth-sign: 0.8.2
-      performance-now: 2.1.0
-      qs: 6.5.2
-      safe-buffer: 5.1.2
-      stringstream: 0.0.6
-      tough-cookie: 2.3.4
-      tunnel-agent: 0.6.0
-      uuid: 3.3.2
-    dev: false
-    engines:
-      node: '>= 4'
-    resolution:
-      integrity: sha512-lR3gD69osqm6EYLk9wB/G1W/laGWjzH90t1vEa2xuxHD5KUrSzp9pUSfTm+YC5Nxt2T8nMPEvKlhbQayU7bgFw==
   /request/2.88.0:
     dependencies:
       aws-sign2: 0.7.0
@@ -1339,14 +1216,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-BvE/TwpZX4FXExxOxZyRGQQv651MSwmWKZGqvmPcRIjDqWub67kTKuIMx43cZZrS/cBBzwBcNDWoFxt2XEFIpQ==
-  /sntp/2.1.0:
-    dependencies:
-      hoek: 4.2.1
-    dev: false
-    engines:
-      node: '>=4.0.0'
-    resolution:
-      integrity: sha512-FL1b58BDrqS3A11lJ0zEdnJ3UOKqVxawAkF3k7F0CVN7VQ34aZrV+G8BZ1WC9ZL7NyrwsW0oviwsWDgRuVYtJg==
   /source-map/0.6.1:
     dev: false
     engines:
@@ -1395,10 +1264,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==
-  /stringstream/0.0.6:
-    dev: false
-    resolution:
-      integrity: sha512-87GEBAkegbBcweToUrdzf3eLhWNg06FJTebl4BVJz/JgWy8CvEr9dRtX5qWphiynMSQlxxi+QqN0z5T32SLlhA==
   /superagent/2.3.0:
     dependencies:
       component-emitter: 1.2.1
@@ -1428,14 +1293,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-rifbOPZgp64uHDt9G8KQgZuFGeY=
-  /tough-cookie/2.3.4:
-    dependencies:
-      punycode: 1.4.1
-    dev: false
-    engines:
-      node: '>=0.8'
-    resolution:
-      integrity: sha512-TZ6TTfI5NtZnuyy/Kecv+CnoROnyXn2DN97LontgQpCwsX2XyLYCC0ENhYkehSOwAp8rTQKc/NUIF7BkQ5rKLA==
   /tough-cookie/2.4.3:
     dependencies:
       psl: 1.1.29
@@ -1571,6 +1428,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-TYuPHszTQZqjYgYb7O9RXh5VljU=
+  /yahoo-stocks/2.0.4:
+    dev: false
+    resolution:
+      integrity: sha512-rSlzNXpVbQUuldZxfbJ61SAZzrWzSyLvniCnFz0y1mNh0rSoCNRQxgyYadxIClp98X8KRko0Dk1fhHpns9FAVw==
   /zombie/5.0.8:
     dependencies:
       babel-runtime: 5.8.29
@@ -1599,8 +1460,8 @@ specifiers:
   chai-http: ^3.0.0
   cors: ^2.8.1
   express: ^4.14.0
-  google-stocks: ^2.0.1
   helmet: ^3.1.0
   mocha: ^3.2.0
   mongodb: ^2.2.16
+  yahoo-stocks: ^2.0.4
   zombie: ^5.0.5
