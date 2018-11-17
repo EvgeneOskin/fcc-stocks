@@ -36,7 +36,7 @@ module.exports = (app) => {
         res.json({ stockData: await getStockData(stocksArray[0]) })
       } else {
         const [leftStock, rightStock] = stocksArray
-        const leftStockData = await getStockData(rightStock)
+        const leftStockData = await getStockData(leftStock)
         const rightStockData = await getStockData(rightStock)
         stockData = await Promise.all(stocksArray.map(getStockData))
         res.json({ stockData })
