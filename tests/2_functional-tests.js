@@ -22,6 +22,7 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({stock: 'goog'})
         .end(function(err, res){
+          assert.equal(res.status, 200)
           assert.property(res.body, 'stockData', 'response must have a stock data')
           assert.property(res.body.stockData, 'stock', '')
           assert.property(res.body.stockData, 'price', '')
@@ -35,6 +36,7 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({ stock: 'goog', like: true })
         .end(function(err, res){
+          assert.equal(res.status, 200)
           assert.property(res.body, 'stockData', '')
           assert.property(res.body.stockData, 'stock', '')
           assert.property(res.body.stockData, 'price', '')
@@ -49,6 +51,7 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({ stock: 'goog', like: true })
         .end(function(err, res){
+          assert.equal(res.status, 200)
           assert.property(res.body, 'stockData', '')
           assert.property(res.body.stockData, 'stock', '')
           assert.property(res.body.stockData, 'price', '')
@@ -63,6 +66,7 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({ stock: ['goog', 'qqq']})
         .end(function(err, res){
+          assert.equal(res.status, 200)
           assert.property(res.body, 'stockData', '')
           assert.isArray(res.body.stockData)
           assert.property(res.body.stockData[0], 'stock', '')
@@ -80,6 +84,7 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({ stock: ['goog', 'qqq'], like: true })
         .end(function(err, res){
+          assert.equal(res.status, 200)
           assert.property(res.body, 'stockData', '')
           assert.isArray(res.body.stockData)
           assert.property(res.body.stockData[0], 'stock', '')
