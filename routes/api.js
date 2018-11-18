@@ -36,23 +36,25 @@ module.exports = (app) => {
         res.json({ stockData: await getStockData(stocksArray[0]) })
       } else {
         const [leftStock, rightStock] = stocksArray
-        const leftStockData = await getStockData(leftStock)
-        const rightStockData = await getStockData(rightStock)
+        const { likes: leftLikes, ...leftStockData} = await getStockData(leftStock)
+        const { likes: rightLikes, ...rightStockData} = await getStockData(rightStock)
         res.json({ stockData: [
-          leftStockData, rightStockData
+          {...leftStockData,rel_likes: rightLikes - leftLikes}, 
+          {...rightStockData, rel_likes:  - rightLikes + leftLikes},
         ]})
       }
     });
   const updateLikes = async (stocks, ip) => {
     const collection = db.collection('stock')
-    return await Promise.all(stocks.map(i => collection.findOneAndUpdate(
-      { stock: i, ip }, {}, { upsert: true }
-    )))
+    return await Promise.all(stocks.map(i => {
+      const instance = { stock: i.toLowerCase(), ip }
+      return collection.findOneAndUpdate(instance, instance, { upsert: true })
+    }))
   }
   const getStockData = async (stock) => {
     const { currentPrice: price } = await lookupStock(stock)
     const collection = db.collection('stock')
-    const likes = await collection.count({ stock })
+    const likes = await collection.count({ stock: stock.toLowerCase() })
     return { stock: stock.toUpperCase(), price, likes }
   }
 };
