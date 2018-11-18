@@ -22,10 +22,10 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({stock: 'goog'})
         .end(function(err, res){
-          assert.property(res.body, 'stockData')
-          assert.property(res.body.stockData, 'stock')
-          assert.property(res.body.stockData, 'price')
-          assert.property(res.body.stockData, 'likes')
+          assert.property(res.body, 'stockData', 'response must have a stock data')
+          assert.property(res.body.stockData, 'stock', '')
+          assert.property(res.body.stockData, 'price', '')
+          assert.property(res.body.stockData, 'likes', '')
           done();
         });
       });
@@ -35,11 +35,11 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({ stock: 'goog', like: true })
         .end(function(err, res){
-          assert.property(res.body, 'stockData')
-          assert.property(res.body.stockData, 'stock')
-          assert.property(res.body.stockData, 'price')
-          assert.property(res.body.stockData, 'likes')
-          assert.equal(res.body.stockData.likes, 1)
+          assert.property(res.body, 'stockData', '')
+          assert.property(res.body.stockData, 'stock', '')
+          assert.property(res.body.stockData, 'price', '')
+          assert.property(res.body.stockData, 'likes', '')
+          assert.equal(res.body.stockData.likes, 1, '')
           done();
         });
       });
@@ -49,11 +49,11 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({ stock: 'goog', like: true })
         .end(function(err, res){
-          assert.property(res.body, 'stockData')
-          assert.property(res.body.stockData, 'stock')
-          assert.property(res.body.stockData, 'price')
-          assert.property(res.body.stockData, 'likes')
-          assert.equal(res.body.stockData.likes, 1)
+          assert.property(res.body, 'stockData', '')
+          assert.property(res.body.stockData, 'stock', '')
+          assert.property(res.body.stockData, 'price', '')
+          assert.property(res.body.stockData, 'likes', '')
+          assert.equal(res.body.stockData.likes, 1, '')
           done();
         });
       });
@@ -63,13 +63,14 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({ stock: ['goog', 'qqq']})
         .end(function(err, res){
-          assert.property(res.body, 'stockData')
-          assert.isAray(res.body.stockData)
-          res.body.stockData.forEach(i => {
-            assert.property(i, 'stock')
-            assert.property(i, 'price')
-            assert.property(i, 'rel_likes')
-          })
+          assert.property(res.body, 'stockData', '')
+          assert.isArray(res.body.stockData)
+          assert.property(res.body.stockData[0], 'stock', '')
+          assert.property(res.body.stockData[0], 'price', '')
+          assert.property(res.body.stockData[0], 'rel_likes', '')
+          assert.property(res.body.stockData[1], 'stock', '')
+          assert.property(res.body.stockData[1], 'price', '')
+          assert.property(res.body.stockData[1], 'rel_likes', '')
           done();
         });
       });
@@ -79,15 +80,15 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({ stock: ['goog', 'qqq'], like: true })
         .end(function(err, res){
-          assert.property(res.body, 'stockData')
-          assert.isAray(res.body.stockData)
-          res.body.stockData.forEach(i => {
-            assert.property(i, 'stock')
-            assert.property(i, 'price')
-            assert.property(i, 'rel_likes')
-          })
-          assert.equal(res.body.stockData[0], res.body.stockData[1])
-          assert.equal(res.body.stockData[0], res.body.stockData[1])
+          assert.property(res.body, 'stockData', '')
+          assert.isArray(res.body.stockData)
+          assert.property(res.body.stockData[0], 'stock', '')
+          assert.property(res.body.stockData[0], 'price', '')
+          assert.property(res.body.stockData[0], 'rel_likes', '')
+          assert.property(res.body.stockData[1], 'stock', '')
+          assert.property(res.body.stockData[1], 'price', '')
+          assert.property(res.body.stockData[1], 'rel_likes', '')
+          assert.isAbove(res.body.stockData[1].rel_likes, res.body.stockData[0].rel_likes, '')
           done();
         });
 
