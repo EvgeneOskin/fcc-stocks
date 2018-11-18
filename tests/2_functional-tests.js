@@ -22,15 +22,27 @@ suite('Functional Tests', function() {
         .get('/api/stock-prices')
         .query({stock: 'goog'})
         .end(function(err, res){
-          
-          //complete this one too
-          
+          assert.property(res.body, 'stockData')
+          assert.property(res.body.stockData, 'stock')
+          assert.property(res.body.stockData, 'price')
+          assert.property(res.body.stockData, 'likes')
           done();
         });
       });
       
       test('1 stock with like', function(done) {
-        
+       chai.request(server)
+        .get('/api/stock-prices')
+        .query({ stock: 'goog', like: true })
+        .end(function(err, res){
+          assert.property(res.body, 'stockData')
+          assert.property(res.body.stockData, 'stock')
+          assert.property(res.body.stockData, 'price')
+          assert.property(res.body.stockData, 'likes')
+          assert.greater(res.body.stockData.likes, 0)
+          done();
+        });
+
       });
       
       test('1 stock with like again (ensure likes arent double counted)', function(done) {
