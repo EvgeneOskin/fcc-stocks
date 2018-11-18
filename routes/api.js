@@ -28,8 +28,8 @@ module.exports = (app) => {
     .get(async (req, res) => {
       const { stock: stocks, like } = req.query
       let stocksArray = stocks
-      if (!stocks.length) {
-        stocksArray = [stocks]
+      if (!(stocks instanceof Array)) {
+        stocksArray = [stocksArray]
       }
       await updateLikes(stocksArray, req.ip)
       if (stocksArray.length === 1) {
@@ -38,19 +38,21 @@ module.exports = (app) => {
         const [leftStock, rightStock] = stocksArray
         const leftStockData = await getStockData(leftStock)
         const rightStockData = await getStockData(rightStock)
-        res.json({ stockData })
+        res.json({ stockData: [
+          leftStockData, rightStockData
+        ]})
       }
     });
   const updateLikes = async (stocks, ip) => {
     const collection = db.collection('stock')
-    return await Promise.all(stocks.map(i => collection.findOneAndUpdate({ 
-      stock: i, ip 
-    })))
+    return await Promise.all(stocks.map(i => collection.findOneAndUpdate(
+      { stock: i, ip }, {}, { upsert: true }
+    )))
   }
   const getStockData = async (stock) => {
     const { currentPrice: price } = await lookupStock(stock)
     const collection = db.collection('stock')
-    const likes = collection.find({stock })
+    const likes = await collection.count({ stock })
     return { stock: stock.toUpperCase(), price, likes }
   }
 };
