@@ -38,7 +38,6 @@ module.exports = (app) => {
         const [leftStock, rightStock] = stocksArray
         const leftStockData = await getStockData(leftStock)
         const rightStockData = await getStockData(rightStock)
-        stockData = await Promise.all(stocksArray.map(getStockData))
         res.json({ stockData })
       }
     });
@@ -50,7 +49,8 @@ module.exports = (app) => {
   }
   const getStockData = async (stock) => {
     const { currentPrice: price } = await lookupStock(stock)
-    const likes = 0
+    const collection = db.collection('stock')
+    const likes = collection.find({stock })
     return { stock: stock.toUpperCase(), price, likes }
   }
 };
