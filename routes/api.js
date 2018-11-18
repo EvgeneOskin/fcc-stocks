@@ -52,9 +52,13 @@ module.exports = (app) => {
     }))
   }
   const getStockData = async (stock) => {
-    const { currentPrice: price } = await lookupStock(stock)
-    const collection = db.collection('stock')
-    const likes = await collection.count({ stock: stock.toLowerCase() })
-    return { stock: stock.toUpperCase(), price, likes }
+    try {
+      const { currentPrice: price } = await lookupStock(stock)
+      const collection = db.collection('stock')
+      const likes = await collection.count({ stock: stock.toLowerCase() })
+      return { stock: stock.toUpperCase(), price, likes }
+    } catch(e) {
+      return { stock: stock.toUpperCase(), price: null, likes: 0 }
+    }
   }
 };
